@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Corporación Technology Group - La plataforma premium de e-commerce y marketplace internacional. Compra lo último en tecnología de las mejores marcas.">
+    <meta name="keywords" content="Tecnología, E-commerce, Marketplace, Smartphones, Laptops, Gaming, Eltiodeli, Yourtech, Deliblu, iCaracas">
+    <meta name="author" content="Corporación Technology Group">
+    <title>Corporación Technology Group | E-Commerce Premium Marketplace</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+
+    <!-- Preloader -->
+    <div id="loader" class="loader-container">
+        <div class="loader-content">
+            <div class="loader-logo">TECHNOLOGY<span>GROUP</span></div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Floating Button -->
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar tema">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/51999999999" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacto WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scroll To Top Button -->
+    <button id="scroll-top" class="scroll-top-btn" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="nav-logo-click">
+                <i class="fas fa-microchip animate-pulse"></i> CTG<span>Corp</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-target="hero-section">Inicio</a></li>
+                <li><a href="#" class="nav-link" data-target="brands-section">Marcas</a></li>
+                <li><a href="#" class="nav-link" data-target="marketplace-section">Productos</a></li>
+                <li><a href="#" class="nav-link" data-target="categories-section">Categorías</a></li>
+                <li><a href="#" class="nav-link" data-target="offers-section">Ofertas</a></li>
+            </ul>
+
+            <div class="nav-search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Busca marcas, productos, categorías, ecosistemas...">
+                <div id="search-dropdown" class="search-suggestions-box"></div>
+            </div>
+
+            <div class="nav-actions">
+                <div class="nav-icon-wrapper" id="favorites-trigger">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="fav-count">0</span>
+                </div>
+                <div class="nav-icon-wrapper" id="cart-trigger">
+                    <i class="far fa-shopping-bag"></i>
+                    <span class="badge badge-blue" id="cart-count">0</span>
+                </div>
+                <div class="nav-icon-wrapper" id="account-trigger">
+                    <i class="far fa-user-circle"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Drawer: Shopping Cart -->
+    <div id="cart-drawer" class="drawer">
+        <div class="drawer-overlay"></div>
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <h3><i class="fas fa-shopping-bag"></i> Carrito de Compras</h3>
+                <button class="close-drawer" id="close-cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="drawer-body" id="cart-items-container">
+                <!-- Cart items dynamically rendered here -->
+            </div>
+            <div class="drawer-footer">
+                <div class="price-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total General</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="btn btn-primary btn-block" id="btn-checkout">Procesar Pedido Premium</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Drawer: Favorites -->
+    <div id="favorites-drawer" class="drawer">
+        <div class="drawer-overlay"></div>
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <h3><i class="fas fa-heart text-red"></i> Mis Favoritos</h3>
+                <button class="close-drawer" id="close-favorites"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="drawer-body" id="favorites-items-container">
+                <!-- Favorites items dynamically rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Drawer: My Account / Dashboard -->
+    <div id="account-drawer" class="drawer">
+        <div class="drawer-overlay"></div>
+        <div class="drawer-content drawer-large">
+            <div class="drawer-header">
+                <h3><i class="fas fa-user-shield"></i> Portal de Cliente Corporativo</h3>
+                <button class="close-drawer" id="close-account"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="drawer-body" id="account-dashboard-container">
+                <!-- User account panel dynamically rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-wrapper">
+            <button class="close-modal" id="close-product-modal"><i class="fas fa-times"></i></button>
+            <div class="modal-content-grid" id="product-modal-body">
+                <!-- Product content dynamically populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dynamic Content Wrapper -->
+    <main>
+        
+        <!-- Hero Section with Background Video Fluid Screen -->
+        <section id="hero-section" class="hero-viewport">
+            <div class="video-container">
+                <video autoplay muted loop playsinline id="hero-video">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-32115-large.mp4" type="video/mp4">
+                    <!-- Backup premium tech animation link if primary drops -->
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-data-31932-large.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="animate-reveal">La nueva forma de comprar tecnología.</h1>
+                <p class="animate-reveal delay-1">Experimente el ecosistema global de Corporación Technology Group. Innovación minimalista, marcas premium internacionales y rendimiento sin límites en un ecosistema unificado.</p>
+                <div class="hero-actions animate-reveal delay-2">
+                    <button class="btn btn-primary scroll-to-view" data-target="marketplace-section">Comprar ahora <i class="fas fa-arrow-right"></i></button>
+                    <button class="btn btn-secondary scroll-to-view" data-target="brands-section">Explorar marcas</button>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <!-- Brands Segment Section -->
+        <section id="brands-section" class="section-padding section-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="subtitle">Ecosistema Global</span>
+                    <h2>Nuestras Marcas Exclusivas</h2>
+                    <p>Cada firma lidera una categoría tecnológica especializada, garantizando los más altos estándares de calidad, diseño y vanguardia del mercado global.</p>
+                </div>
+                <div class="brands-grid" id="brands-display-container">
+                    <!-- Brands loop dynamic insertion -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers / Promo Banners Section -->
+        <section id="offers-section" class="section-padding bg-dark-tint section-reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle">Oportunidades Únicas</span>
+                    <h2>Ofertas Especiales & Combos Tech</h2>
+                </div>
+                <div class="offers-grid">
+                    <div class="offer-card premium-glass glow-blue">
+                        <div class="offer-badge">Especial</div>
+                        <div class="offer-info">
+                            <h3>Ecosistema Apple Pro iCaracas</h3>
+                            <p>Adquiere un iPhone 15 Pro Max + AirPods Pro 2 con un descuento corporativo inmediato del 20%.</p>
+                            <div class="countdown-timer" data-time="2026-12-31T23:59:59">
+                                <div><span class="days">00</span><small>Días</small></div>
+                                <div><span class="hours">00</span><small>Horas</small></div>
+                                <div><span class="minutes">00</span><small>Min</small></div>
+                                <div><span class="seconds">00</span><small>Seg</small></div>
+                            </div>
+                            <button class="btn btn-blur offer-action-btn" data-combo="apple-combo">Adquirir Combo</button>
+                        </div>
+                        <div class="offer-visual">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                    </div>
+                    <div class="offer-card premium-glass glow-purple">
+                        <div class="offer-badge">Gamer Elite</div>
+                        <div class="offer-info">
+                            <h3>Setup Ultimate ElectronicToyStore</h3>
+                            <p>Consola PlayStation 5 Slim + Mando DualSense Edge + Monitor Asus ROG 4K. El set definitivo listo para la acción.</p>
+                            <div class="price-tag-deal"><span class="old-price">$1,499</span> <span class="new-price">$1,199</span></div>
+                            <button class="btn btn-blur offer-action-btn" data-combo="gamer-combo">Adquirir Setup</button>
+                        </div>
+                        <div class="offer-visual">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Marketplace / Products Catalog Section -->
+        <section id="marketplace-section" class="section-padding section-reveal">
+            <div class="container-fluid operational-layout">
+                <!-- Sidebar Filtering Controls -->
+                <aside class="filter-sidebar glassmorphism">
+                    <div class="filter-sidebar-header">
+                        <h4><i class="fas fa-sliders-h"></i> Filtros Avanzados</h4>
+                        <button id="btn-reset-filters" class="btn-link">Limpiar Todo</button>
+                    </div>
+                    
+                    <!-- Filter Group: Category -->
+                    <div class="filter-group">
+                        <h5>Categoría</h5>
+                        <div class="filter-options" id="filter-category-list">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Filter Group: Brand -->
+                    <div class="filter-group">
+                        <h5>Marca Corporativa</h5>
+                        <div class="filter-options" id="filter-brand-list">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Filter Group: Price Range -->
+                    <div class="filter-group">
+                        <h5>Rango de Precio</h5>
+                        <div class="price-slider-container">
+                            <input type="range" id="price-range" min="0" max="3000" step="50" value="3000">
+                            <div class="price-values">
+                                <span>$0</span>
+                                <span id="price-range-value">Máx: $3000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Group: RAM -->
+                    <div class="filter-group">
+                        <h5>Memoria RAM</h5>
+                        <div class="filter-options" id="filter-ram-list">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Filter Group: Almacenamiento -->
+                    <div class="filter-group">
+                        <h5>Almacenamiento</h5>
+                        <div class="filter-options" id="filter-storage-list">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Catalog Content Grid -->
+                <div class="catalog-main">
+                    <div class="catalog-toolbar glassmorphism">
+                        <div class="results-counter">
+                            Mostrando <span id="filtered-count">0</span> de <span id="total-count">0</span> dispositivos premium
+                        </div>
+                        <div class="catalog-sorting">
+                            <label for="sort-select">Ordenar por:</label>
+                            <select id="sort-select">
+                                <option value="default">Relevancia Corporativa</option>
+                                <option value="price-asc">Precio: Menor a Mayor</option>
+                                <option value="price-desc">Precio: Mayor a Menor</option>
+                                <option value="rating">Calidad & Opiniones</option>
+                                <option value="sales">Más Vendidos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Products Grid Display -->
+                    <div class="products-grid-system" id="products-display-container">
+                        <!-- Products rendered cleanly inside cards via app.js -->
+                    </div>
+
+                    <!-- Empty state indicator -->
+                    <div id="empty-catalog-state" class="empty-state hidden">
+                        <i class="fas fa-search-minus"></i>
+                        <h3>No se encontraron dispositivos</h3>
+                        <p>Intente modificando sus criterios de filtrado o explore una categoría alternativa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Visual Showcase Section -->
+        <section id="categories-section" class="section-padding bg-dark-tint section-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="subtitle">Ecosistemas</span>
+                    <h2>Navegación por Categorías Profesionales</h2>
+                    <p>Explore soluciones de ingeniería de hardware y entretenimiento premium clasificadas con exactitud.</p>
+                </div>
+                <div class="categories-showcase-grid" id="categories-showcase-container">
+                    <!-- Categories custom display cards -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area Section -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand-column">
+                    <a href="#" class="footer-logo">TECHNOLOGY<span>GROUP</span></a>
+                    <p class="footer-desc">Plataforma e-commerce y marketplace global unificado de la Corporación Technology Group. Diseñamos experiencias transaccionales premium de alta fidelidad para la adquisición de ecosistemas informáticos y de movilidad.</p>
+                    <div class="footer-socials">
+                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="social-icon wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-icon tk" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon x" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-column">
+                    <h4>Marcas del Portafolio</h4>
+                    <ul>
+                        <li><a href="#" class="brand-footer-link" data-brand="Eltiodeli">Eltiodeli</a></li>
+                        <li><a href="#" class="brand-footer-link" data-brand="Yourtech Móviles">Yourtech Móviles</a></li>
+                        <li><a href="#" class="brand-footer-link" data-brand="Deliblu Móviles">Deliblu Móviles</a></li>
+                        <li><a href="#" class="brand-footer-link" data-brand="iCaracas">iCaracas</a></li>
+                        <li><a href="#" class="brand-footer-link" data-brand="Mayju Móviles">Mayju Móviles</a></li>
+                        <li><a href="#" class="brand-footer-link" data-brand="Mayjea Móviles">Mayjea Móviles</a></li>
+                        <li><a href="#" class="brand-footer-link" data-brand="ElectronicToyStore Gamer">ElectronicToyStore Gamer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-column">
+                    <h4>Ecosistemas Principales</h4>
+                    <ul>
+                        <li><a href="#" class="category-footer-link" data-cat="Smartphones">Smartphones & Flagships</a></li>
+                        <li><a href="#" class="category-footer-link" data-cat="Laptops">Laptops & Estaciones de Trabajo</a></li>
+                        <li><a href="#" class="category-footer-link" data-cat="Gaming">Gaming & Consolas Avanzadas</a></li>
+                        <li><a href="#" class="category-footer-link" data-cat="Smartwatch">Smartwatches & Wearables</a></li>
+                        <li><a href="#" class="category-footer-link" data-cat="Audífonos">Audio Premium & Audífonos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-column">
+                    <h4>Sede Global & Contacto</h4>
+                    <ul class="contact-info-list">
+                        <li><i class="fas fa-envelope"></i> corporativo@technologygroup.com</li>
+                        <li><i class="fas fa-phone-alt"></i> +51 1 700-4500</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. El Derby 254, Santiago de Surco, Lima, Perú</li>
+                        <li><i class="fas fa-clock"></i> Lun - Sáb: 09:00 AM - 08:00 PM</li>
+                    </ul>
+                    <div class="footer-map-mock">
+                        <div class="map-indicator">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Centro Corporativo CTG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>&copy; 2026 Corporación Technology Group. Todos los derechos reservados. Arquitectura de Software Premium Unificada.</p>
+                <div class="footer-legal-links">
+                    <a href="#">Términos Globales</a>
+                    <a href="#">Privacidad Corporativa</a>
+                    <a href="#">Políticas de Garantía Elite</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Master Script File -->
+    <script src="app.js"></script>
+</body>
+</html>
