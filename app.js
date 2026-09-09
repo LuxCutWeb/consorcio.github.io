@@ -186,9 +186,27 @@ class App {
         document.getElementById("clear-cart-btn").addEventListener("click", () => {
             this.clearCart();
         });
-        document.getElementById("checkout-btn").addEventListener("click", () => {
-            this.processCheckout();
-        });
+// Abrir Modal de Pagos
+document.getElementById("checkout-btn").addEventListener("click", () => {
+    if (this.cart.length > 0) {
+        document.getElementById("payment-modal").classList.add("active");
+    } else {
+        this.showToast("Tu carrito está vacío. Agrega productos primero.");
+    }
+});
+
+// Eventos internos del Modal de Pago
+document.getElementById("close-payment-modal").addEventListener("click", () => {
+    document.getElementById("payment-modal").classList.remove("active");
+});
+
+document.getElementById("confirm-whatsapp-btn").addEventListener("click", () => {
+    document.getElementById("payment-modal").classList.remove("active");
+    this.processCheckout();
+});
+
+
+       
 
         // Eventos de Autenticación
         document.getElementById("go-to-register").addEventListener("click", (e) => {
